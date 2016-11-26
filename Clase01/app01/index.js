@@ -1,5 +1,10 @@
 var express = require("express"),
-	app = express()
+	app = express(),
+	motorVistas = 'ejs',
+	directorioVistas = __dirname + "/vistas"
+
+app.set("view engine", motorVistas)
+app.set("views", directorioVistas)
 
 
 app.get("/", function(req, res){
@@ -11,7 +16,7 @@ app.get("/facebook", function(req, res) {
 })
 
 app.get("/quienes", function(req, res){
-	res.sendFile("quienes.html")
+	res.sendFile(__dirname + "/quienes.html")
 })
 
 app.get("/nosotros", function(req, res){
@@ -20,6 +25,27 @@ app.get("/nosotros", function(req, res){
 
 app.get("/descarga", function(req, res){
 	res.download("archivo.pdf")
+})
+
+app.get("/datos", function(req, res) {
+	var misDatos = {
+		nombre: "Sergio",
+		apellido: "Hidalgo",
+		curso: "NodeJS"
+	}
+	res.render("datos-personales", misDatos)
+})
+
+app.get("/bd", function(req, res){
+	var datos = {
+		registros: [
+			{curso: "NodeJS", frecuencia: "Sábados"},
+			{curso: "HTML", frecuencia: "Martes y Jueves"},
+			{curso: "Proyectos Corporativos", frecuencia: "Lunes y Viernes"}
+		]
+	}
+
+	res.render("cursos", datos)
 })
 
 

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<h1>Lista de Cursos</h1>
+
+<table>
+	<tr>
+		<th>Curso</th>
+		<th>Frecuencia</th>
+	</tr>
+	<% registros.forEach(function(elem){ %>
+	<tr>
+		<td><%= elem.curso %></td>
+		<td><%= elem.frecuencia %></td>
+	</tr>
+	<% }) %>
+</table>
+
+</body>
+</html>
