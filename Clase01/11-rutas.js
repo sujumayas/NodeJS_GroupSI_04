@@ -1,8 +1,17 @@
 var http = require("http").createServer(),
-	fs = require("fs")
+	fs = require("fs"),
+	path = require("path"),
+	rutas = [
+		{ruta: "", archivo: "index.html"},
+		{ruta: "quienes", archivo: "quienes.html"},
+		{ruta: "servicios", archivo: "servicios.html"}
+	]
 
 function fnServidor(req, res){
-	console.log(req.url)
+	var rutaRequerida = path.basename(req.url)
+
+	console.log(rutaRequerida)
+
 	fs.readFile("data.html", function(err, contenido) {
 		if(err) {
 			res.writeHead(500, {"content-type": "text/plain"})
