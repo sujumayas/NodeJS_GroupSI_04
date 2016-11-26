@@ -5,14 +5,11 @@ var http = require("http").createServer(),
 		{ruta: "", archivo: "index.html"},
 		{ruta: "quienes", archivo: "quienes.html"},
 		{ruta: "servicios", archivo: "servicios.html"}
-	]
+	],
+	noEncontrado = true
 
-function fnServidor(req, res){
-	var rutaRequerida = path.basename(req.url)
-
-	console.log(rutaRequerida)
-
-	fs.readFile("data.html", function(err, contenido) {
+function fnEnviarArchivo(archivo, res) {
+	fs.readFile(archivo, function(err, contenido) {
 		if(err) {
 			res.writeHead(500, {"content-type": "text/plain"})
 			res.end("Ocurrió un error.")
@@ -21,6 +18,22 @@ function fnServidor(req, res){
 			res.end(contenido.toString())			
 		}
 	})
+}
+
+function fnServidor(req, res){
+	var rutaRequerida = path.basename(req.url)
+
+	rutas.forEach(function(elem, ind){
+		if(rutaRequerida==elem.ruta) {
+			noEncontrado = false
+			fnEnviarArchivo(elem.archivo, res)
+		}
+	})
+
+	if(noEncontrado) {
+		res.writeHead(404, {"content-type": "text/html"})
+		res.end("NO ENCONTRADO")			
+	}
 }
 
 function fnEscuchando(){
