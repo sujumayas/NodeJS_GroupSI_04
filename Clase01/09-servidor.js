@@ -1,8 +1,10 @@
 var http = require("http").createServer()
 
 function fnServidor(req, res){
-	res.writeHead(200, {"content-type": "text/plain"})
-	res.write("Todo está bien.")
+	// res.writeHead(200, {"content-type": "text/plain"})
+	// res.write("Todo está bien.")
+	res.writeHead(200, {"content-type": "text/html"})
+	res.write("<h1>Texto de cabecera en html</h1>")
 	res.end()
 }
 

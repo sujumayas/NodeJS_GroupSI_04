@@ -1,0 +1,14 @@
+{
+  "name": "Supervisor",
+  "version": "1.0.0",
+  "description": "Recarga el navegador",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sergio Hidalgo",
+  "license": "ISC",
+  "dependencies": {
+    "supervisor": "^0.12.0"
+  }
+}
