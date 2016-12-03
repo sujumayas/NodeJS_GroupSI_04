@@ -161,10 +161,29 @@ app.get("/jugadores/:equipo/:activo", function(req, res){
 	})
 	datos = {
 		jugadores: toReturn,
-		equipo : req.params.equipo
+		equipo : req.params.equipo  // You could even send params directly. (like a search)
 	}
 	res.render("jugadores", datos)
 })
+
+
+// app.get("/search/:queryString", function(req,res){
+// 	var foundNothing = true
+	
+// 	if(!foundNothing){
+
+// 	}else{
+// 		toReturn = req.params.queryString
+// 	}
+// 	res.render("search", {toReturn:toReturn})
+// });
+
+app.get("/registro", function(req,res){
+	res.render("registro")
+})
+
+
+
 
 
 
