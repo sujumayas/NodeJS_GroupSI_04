@@ -1,18 +1,26 @@
 var express = require('express'), //Shortcut for requiring express
 	app = express(),
 	path = require('path'), 	//Require the path joining helper
+	bodyParser = require("body-parser"),
 	engine = "ejs",		//Define name for engine
 	views = "/views",		//Define relative path for views
 	publicFiles = "/public"		//Define the public (static) 
+	
 
 //Now set the view engine (templating engine)
 app.set("view engine", engine)
 //And then set the views path with the path helper and the __dirname global. 
 app.set("views", path.join(__dirname, views))
 
-
+//Use express static path
 app.use(express.static(path.join(__dirname, publicFiles)))
 
+//Use bodyparser
+app.use(bodyParser.json())
+
+//Body PArser has two libraries (qs | querystring)
+//Hay que decirle false pa que use querystring que es mejor ¿?
+app.use(bodyParser.urlencoded({extend: false})) 
 
 //Define a helper method for the listening
 function fnEscuchando() {
@@ -182,6 +190,14 @@ app.get("/registro", function(req,res){
 	res.render("registro")
 })
 
+
+app.post("/insertar", function(req,res){
+	var datos = {
+		name: req.body.name,
+		email: req.body.email
+	}
+	res.json(datos)
+})
 
 
 
