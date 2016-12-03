@@ -8,6 +8,7 @@ function fnEscuchando(){
 var express = require("express"),
 	app = express(),
 	path = require("path"),
+	bodyParser = require("body-parser"),
 	motorVistas = "ejs",
 	dirVistas = "/vistas",
 	dirPublico = "/publico"
@@ -17,6 +18,8 @@ app.set("view engine", motorVistas)
 app.set("views", path.join(__dirname, dirVistas))
 
 app.use(express.static(__dirname + dirPublico))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extend: false}))
 
 app.listen(3000, fnEscuchando)
 
@@ -63,7 +66,7 @@ app.get("/usuarios", function(req, res) {
 	})
 })
 
-app.get("/jugadores/:activo/:equipo", function(){
+app.get("/jugadores/:activo/:equipo", function(req, res){
 	var jugadores = [
 		{jugador: "Jugador1", activo: 1},
 		{jugador: "Jugador2", activo: 0},
@@ -85,10 +88,20 @@ app.get("/jugadores/:activo/:equipo", function(){
 	}
 
 	res.render("jugadores", datos)
-
 })
 
+app.get("/registro", function(req, res){
+	res.render("registro")
+})
 
+app.post("/insertar", function(req, res){
+	var datos = {
+		nombre: req.body.nombre,
+		correo: req.body.correo
+	}
+
+	res.json(datos)
+})
 
 
 

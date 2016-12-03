@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<h1><%= equipo %></h1>
+
+<h2>Lista de jugadores</h2>
+<ul>
+	<% jugadores.forEach(function(item){ %>
+		<li><%= item.jugador %></li>
+	<% }) %>
+</ul>
+
+</body>
+</html>
