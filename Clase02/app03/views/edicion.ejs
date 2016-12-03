@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf8">
+</head>
+<body>
+
+<h1>Edición</h1>
+<form method="post" action="/usuarios/<%= registro._id %>/?_method=put">
+	<input type="text" name="nombre" placeholder="Ingrese su nombre" value="<%= registro.nombre %>"><br>
+	<input type="text" name="apellido" placeholder="Ingrese su apellido" value="<%= registro.apellido %>"><br>
+	<input type="submit" name="bntEnviar" value="Enviar"> 
+</form>
+
+</body>
+</html>

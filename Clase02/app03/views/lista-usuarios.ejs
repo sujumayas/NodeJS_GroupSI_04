@@ -16,11 +16,29 @@
 		<tr>
 			<td><%= item.nombre %></td>
 			<td><%= item.apellido %></td>
-			<td></td>
+			<td>
+				<a href="/usuarios/<%= item._id %>">Editar</a>
+			</td>
 		</tr>
 	<% }) %>
-
 </table>
+
+<form method="post" action="/usuarios">
+	<input type="text" name="nombre" placeholder="Ingrese su nombre"><br>
+	<input type="text" name="apellido" placeholder="Ingrese su apellido"><br>
+	<input type="submit" name="bntEnviar" value="Enviar"> 
+</form>
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
