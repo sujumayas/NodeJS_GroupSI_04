@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+</head>
+<body>
+
+<h1>Usuarios</h1>
+<table>
+	<tr>
+		<th>Nombre</th>
+		<th>Apellido</th>
+	</tr>
+
+	<% registros.forEach(function(item, ind){ %>
+	<tr>
+		<td><%= item.nombre %></td>
+		<td><%= item.apellido %></td>
+	</tr>
+	<% }) %>
+
+</table>
+
+</body>
+</html>

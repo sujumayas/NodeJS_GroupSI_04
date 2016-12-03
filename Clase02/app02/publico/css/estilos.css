@@ -1,0 +1,18 @@
+h1 {
+	font-family: Verdana;
+	font-size: 30px;
+}
+
+table{
+	width: 50%;
+	font-family: Arial;
+	font-style: 20px
+}
+
+td:nth-child(odd) td {
+	background-color: gray;
+}
+
+td:nth-child(even) td {
+	background-color: white;
+}
