@@ -63,6 +63,44 @@ app.get("/usuarios", function(req, res) {
 	})
 })
 
+app.get("/jugadores/:activo/:equipo", function(){
+	var jugadores = [
+		{jugador: "Jugador1", activo: 1},
+		{jugador: "Jugador2", activo: 0},
+		{jugador: "Jugador3", activo: 0},
+		{jugador: "Jugador4", activo: 1},
+		{jugador: "Jugador5", activo: 0}
+	]
+
+	var jugadoresFiltrados = []
+	jugadores.forEach(function(item){
+		if(item.activo==req.params.activo) {
+			jugadoresFiltrados.push(item)
+		}
+	})
+
+	var datos = {
+		jugadores: jugadoresFiltrados,
+		equipo: req.params.equipo
+	}
+
+	res.render("jugadores", datos)
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
