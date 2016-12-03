@@ -57,7 +57,29 @@ router.put("/:id", function(req, res, next){
 		})
 })
 
+router.get("/form-eliminar/:id", function(req, res, next){
+	Usuarios
+		.find({_id: req.params.id})
+		.then(function(registros){
+			res.render("eliminacion", {registro: registros[0]})
+		})
+		.catch(function(error){
+			res.status(500)
+			res.send(error)
+		})
+})
 
+router.delete("/:id", function(req, res, next){
+	Usuarios
+		.remove({_id: req.params.id})
+		.then(function(registros){
+			res.redirect("/usuarios")
+		})
+		.catch(function(error){
+			res.status(500)
+			res.send(error)
+		})
+})
 module.exports = router
 
 
