@@ -10,7 +10,7 @@ function fntAuthenticated(req, res, next){
 }
 
 /* GET home page. */
-router.get('/', fntAuthenticated ,function(req, res, next) {
+router.get('/', fntAuthenticated, function(req, res, next) {
 	res.render('index', { title: 'Express' });
 });
 
