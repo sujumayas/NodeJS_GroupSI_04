@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var mongodb = require('mongodb');
+var db = require('monk')('localhost/bd_usuarios');
 
 function fntAuthenticated(req, res, next){
-	if(req.session.user){
+	if(req.session.username){
 		next();
 	}else{
 		res.redirect('/login');
@@ -18,13 +20,24 @@ router.get('/login', function(req,res,next){
 	res.render('login');
 });
 
-router.get('/usuario', function(req,res,next){
-	if (req.body.username =="xinef" && req.body.password=="987987"){ //Aquí se comprobará con BD.
-		req.session.usuario = {usuario:req.body.usuario}
-		res.redirect('/');
-	}else{
-		res.render('login');
-	}
+router.post('/validate_user', function(req,res,next){
+	var usuario = db.get('usuarios');
+	usuario
+		.find({username:req.body.username, password:req.body.password})
+		.then(function(registros){ //Ojo registros siempre es un array
+			if(registros.length){
+				req.session.username = {username:req.body.username}
+				res.render('home', {username : req.body.username});
+			}else{
+				res.redirect('/login');
+			}
+		})
+		.catch(function(error){
+			res.send("Error ocurred in DB");
+		})
+
+	
+	
 });
 
 router.get('/logout', function(req, res,next){

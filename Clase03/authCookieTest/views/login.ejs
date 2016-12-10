@@ -20,16 +20,16 @@
 	<div class="container">
 		<div class="row">
 			<div class="col s8">
-				<form action="post" action="/usuario">
+				<form method="post" action="/validate_user">
 					<div class="row">
 					    <div class="input-field col s12">
-					      	<input value="" id="username" type="text" class="validate">
+					      	<input name="username" value="" id="username" type="text" class="validate">
 					      	<label for="username">Username</label>
 					    </div>
 					</div>
 				  	<div class="row">
 					    <div class="input-field col s12">
-					      	<input id="password" type="password" value="" class="validate">
+					      	<input name="password" id="password" type="password" value="" class="validate">
 				      		<label for="password">Password</label>
 					    </div>
 					</div>
