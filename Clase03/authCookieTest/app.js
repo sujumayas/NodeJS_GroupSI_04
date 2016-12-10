@@ -2,12 +2,13 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+//var login = require('./routes/login');
 
 var app = express();
 
@@ -18,19 +19,23 @@ app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());                             
-app.use(bodyParser.urlencoded({ extended: false }));  //creates req.body ?
-app.use(cookieSession({secret: "cadenaEncriptacion"})); //creates req.session = json
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieSession({secret:'takemycookiemdfk'}))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(function(req,res,next){
-//   //I dont want a web page today
-//   res.render("404");
+// app.use(function(req, res, next){
+//   if(req.session.user || /* login */ ){
+//     next();
+//   }else{
+//     res.redirect('/login'); // -> Loop infinito de redirects... 
+//   }
 // });
 
 app.use('/', routes);
 app.use('/users', users);
+//app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
