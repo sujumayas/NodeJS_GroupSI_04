@@ -33,6 +33,9 @@ router.post("/usuario", function(req, res, next){
 				res.render("login")
 			}
 		})
+		.catch(function(error){
+			res.send("Ocurrió un error con la base de datos")
+		})
 
 /*	if(req.body.usuario==="sergio" && req.body.contrasena==="1234") {
 		req.session.usuario = {usuario: req.body.usuario}
