@@ -1,0 +1,36 @@
+<% include cabecera %>
+
+<div class="container">
+	<div class="row">
+		<h1>Usuarios</h1>	
+
+		<table class="table table-striped">
+			<tr>
+				<th>Usuario</th>
+				<th>Acción</th>
+			</tr>
+				<% data.forEach(function(children){ %>
+				<tr>
+					<td><%= children.name %> <%= children.lastname %></td>
+					<td><a href="#" class="btn btn-success">Editar</a></td>
+				</tr>
+				<% }) %>
+
+		</table>
+
+		<a href="#" class="btn btn-danger">Insertar</a>
+
+		<nav aria-label="Page navigation">
+		  <ul class="pagination">
+		    <% for(var ind=0; ind < pageQuantity; ind++){%>
+		    	<li><a href="<%= ind+1 %>" class=""><%= ind+1 %></a></li>
+		    <% } %>
+		  </ul>
+		</nav>		
+
+	</div>
+</div>
+
+
+<% include pie %>
+
