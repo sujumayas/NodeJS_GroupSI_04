@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Socket</title>
+	<link rel="stylesheet" href="">
+	<script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+	<style>
+		canvas {
+			background-color:black;
+		}
+		.row {
+			display: block;
+			width: 100%;
+		}
+	</style>
+
+	<div class="row">
+		<button id="btnBorrar">Borrar</button>
+	</div>
+	<div class="row">
+		<canvas id="canvas1" width="400" height="300"></canvas>
+		<canvas id="canvas2" width="400" height="300"></canvas>	
+	</div>
+	
+	
+
+	<script>
+		var socket = io();
+		
+		socket.emit("handshake", "Hello");
+		socket.on("respuesta", function(mensaje){
+			console.log(mensaje);		
+		})
+
+		var drawing = false;
+		var canvas1 = document.getElementById("canvas1");
+		var context1 = canvas1.getContext("2d");
+		context1.lineWidth = 2;
+		context1.strokeStyle = "red";
+		var startStroke = {};
+
+		canvas1.addEventListener("mousedown", function(e){
+			startStroke.x = e.clientX;
+			startStroke.y = e.clientY;
+			drawing = true;
+		})
+
+		canvas1.addEventListener("mouseup", function(e){
+			startStroke = {};
+			drawing = false;
+		})
+
+		canvas1.addEventListener("mousemove", function(e) {
+			/* Act on the event */
+			if(drawing){
+				context1.beginPath();
+				context1.moveTo(startStroke.x, startStroke.y);
+				context1.lineTo(e.clientX, e.clientY);
+				context1.stroke();
+				context1.closePath();
+				socket.emit("trazo", startStroke.x, startStroke.y, e.clientX, e.clientY);
+				startStroke.x = e.clientX;
+				startStroke.y = e.clientY;
+			}
+		});
+
+
+		var canvas2 = document.getElementById("canvas2");
+		var context2 = canvas2.getContext("2d");
+		context2.lineWidth = 2;
+		context2.strokeStyle = "red";
+
+		socket.on("trazoResponse", function(startX, startY, endX, endY){
+			context2.beginPath();
+			context2.moveTo(startX, startY);
+			context2.lineTo(endX, endY);
+			context2.stroke();
+			context2.closePath();
+		});
+
+		var btnBorrar = document.getElementById("btnBorrar");
+		btnBorrar.addEventListener("click", function(e){
+			context1.clearRect(0,0,400,300);
+			context2.clearRect(0,0,400,300);
+
+			socket.emit("borrar");
+		})
+
+		socket.on("borrarTodo", function(){
+			context1.clearRect(0,0,400,300);
+			context2.clearRect(0,0,400,300);
+		})
+
+
+	</script>
+	
+</body>
+</html>
