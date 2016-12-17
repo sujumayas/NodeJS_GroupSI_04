@@ -43,6 +43,20 @@ router.get('/google/callback',
 	)
 )
 
+//RUTAS DE TWITTER
+router.get('/twitter/login', passport.authenticate("twitter"));
+
+router.get('/twitter/callback',
+	passport.authenticate(
+		'twitter', 
+		{
+			successRedirect:"/home",
+			failureRedirect:"/"
+
+		}
+	)
+)
+
 
 
 router.get('/logout', function(req,res){
