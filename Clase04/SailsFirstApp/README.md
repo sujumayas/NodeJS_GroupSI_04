@@ -2,6 +2,9 @@
 
 a [Sails](http://sailsjs.org) application
 
+#Important notes
+
+- Sails render the view with res.view() instead of express res.render();
 
 # API
 
