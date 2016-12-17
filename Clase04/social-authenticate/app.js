@@ -4,11 +4,29 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var cookieSession = require('cookie-session');
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var redes = require('./routes/redes');
+
+var configPassport = require('./modules/apiRedes');
+
+var mongodb = require('mongodb');
+var db = require('monk')("localhost/db_historias");
+
+var passport = require('passport');
+
 
 var app = express();
+
+passport.serializeUser(function(user, done){
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done){
+  done(null, user);
+});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,11 +37,20 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieSession({secret:"aoisjfoaijsfoiajsfoas"}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+configPassport(passport);
+// require('./modules/apiRedes')(passport);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', routes);
 app.use('/users', users);
+app.use('/redes', redes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
