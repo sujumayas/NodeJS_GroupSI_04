@@ -57,6 +57,19 @@ router.get('/twitter/callback',
 	)
 )
 
+//RUTAS DE TWITTER
+router.get('/github/login', passport.authenticate("github"));
+
+router.get('/github/callback',
+	passport.authenticate(
+		'github', 
+		{
+			successRedirect:"/home",
+			failureRedirect:"/"
+
+		}
+	)
+)
 
 
 router.get('/logout', function(req,res){

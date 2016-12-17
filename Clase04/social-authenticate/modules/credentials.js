@@ -13,6 +13,11 @@ var credentials = {
 		consumerKey: 'YbUesu1Z95Zs9i8E63rjs7Q5j',
 		consumerSecret: 'nxUsBB510MNMVgcgU6bJhBpXbP0BSgH0DrMARKIN49yU7SPKua',
 		callbackURL: 'http://127.0.0.1:3000/redes/twitter/callback'
+	},
+	github:{
+		clientID : 'edb258e0c28149e21a73',
+		clientSecret: 'b6e497e70ed8a10528629180c288b703f766e036',
+		callbackURL: 'http://localhost:3000/redes/github/callback'
 	}
 
 }
