@@ -9,10 +9,10 @@
 
     <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" method="post" action="/validate_user">
         <h2 class="form-signin-heading">Acceso</h2>
         <label for="inputEmail" class="sr-only">Correo</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Correo" required autofocus>
+        <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Correo" required autofocus>
         <label for="inputPassword" class="sr-only">Contraseña</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>

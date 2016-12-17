@@ -11,3 +11,4 @@ Revisar
 
 - Phantomjs
 
+## mongod --dbpath PATH
