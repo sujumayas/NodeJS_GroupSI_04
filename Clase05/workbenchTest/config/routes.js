@@ -34,7 +34,7 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
 
   /***************************************************************************
   *                                                                          *
@@ -45,5 +45,34 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+
+  'get /players':{
+    controller: "PlayerController",
+    action: "getAllPlayers"
+  },
+  'post /players':{
+    controller: "PlayerController",
+    action: "createPlayer"
+  },
+  'get /players/:id':{
+    controller: "PlayerController",
+    action: "getPlayerDetail"
+  },
+  'put /players/:id':{
+    controller: "PlayerController",
+    action: "updatePlayer"
+  },
+  'delete /players/:id':{
+    controller: "PlayerController",
+    action: "deletePlayer"
+  },
+  'get /players/:p':{
+    controller: "PlayerController",
+    action: "getAllPlayersPaginated"
+  },
+  'get /players/count':{
+    controller: "PlayerController",
+    action: "countPlayers"
+  }
 
 };

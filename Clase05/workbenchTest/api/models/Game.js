@@ -21,7 +21,7 @@ module.exports = {
 			required: true
 		},
 		players: {
-	    	collection: 'player',
+	    	collection: 'Player',
 	      	via: 'games'
 	    }	
 	}
@@ -30,4 +30,14 @@ module.exports = {
 // Model Associations
 // https://github.com/balderdashy/waterline-docs/blob/master/models/associations/one-to-many.md
 
-//Game.create({hash:"391jg9183jg91jg131g3gj1g-13g"}).exec(console.log)
+//	> Create
+//	
+//	Game.create({hash:"AS2OFJAJBNJNQKNOEWWLZPSJG16"}).exec(console.log)
+//	
+//	> Update
+//	
+//	Game.update({id:1}, {players:[1,2]}).exec(console.log)
+//
+//	> Populate
+//	
+//	Game.find().populate("games").exec(console.log)

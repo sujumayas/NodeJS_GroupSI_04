@@ -29,7 +29,7 @@ module.exports = {
 			enum:["male","woman","notsosimple"]
 		},
 		games: {
-		  	collection: 'game',
+		  	collection: 'Game',
 		  	via: 'players',
 		  	dominant: true
 		}
@@ -40,4 +40,15 @@ module.exports = {
 // Many to many
 //https://github.com/balderdashy/waterline-docs/blob/master/models/associations/one-to-many.md
 
-//Player.create({name:"Esen",lastname:"Espinosa",sex:"male"})
+//	> Create
+//	
+//	Player.create({name:"Esen",lastname:"Espinosa",sex:"male"}).exec(console.log)
+//	
+//	> Update
+//	
+//	Player.update({id:1}, {games:[1,2,3]}).exec(console.log)
+//
+//	> Populate
+//	
+//	Player.find().populate("games").exec(console.log)
+//
