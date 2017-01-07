@@ -27,9 +27,17 @@ module.exports = {
 		sex : {
 			type: "string",
 			enum:["male","woman","notsosimple"]
+		},
+		games: {
+		  	collection: 'game',
+		  	via: 'players',
+		  	dominant: true
 		}
 	}
 };
 
+
+// Many to many
+//https://github.com/balderdashy/waterline-docs/blob/master/models/associations/one-to-many.md
 
 //Player.create({name:"Esen",lastname:"Espinosa",sex:"male"})

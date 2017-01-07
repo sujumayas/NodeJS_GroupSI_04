@@ -19,9 +19,15 @@ module.exports = {
 			unique: true,
 			type: "string", // This should be automaticly made hash string
 			required: true
-		}
+		},
+		players: {
+	    	collection: 'player',
+	      	via: 'games'
+	    }	
 	}
 };
 
+// Model Associations
+// https://github.com/balderdashy/waterline-docs/blob/master/models/associations/one-to-many.md
 
 //Game.create({hash:"391jg9183jg91jg131g3gj1g-13g"}).exec(console.log)
