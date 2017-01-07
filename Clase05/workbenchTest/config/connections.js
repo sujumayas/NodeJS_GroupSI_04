@@ -45,7 +45,7 @@ module.exports.connections = {
     host: 'localhost',
     user: 'root', // Este usuario debería existir previamente. 
     password: '987987', //optional
-    database: 'chessDatabase' // Esta base debería existir previamente. 
+    database: 'chess_test_database' // Esta base debería existir previamente. 
   },
 
   /***************************************************************************

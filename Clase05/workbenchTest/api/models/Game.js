@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-	tableName: "Players",
+	tableName: "Games",
 	connection: "testMysqlServer",
 	attributes: {
 		id : {
@@ -15,21 +15,13 @@ module.exports = {
 			autoIncrement: true,
 			unique: true
 		},
-		name : {
-			type:'string', //string interpretates as varchar 255 in mysql
+		hash: {
+			unique: true,
+			type: "string", // This should be automaticly made hash string
 			required: true
-		},
-		lastname : {
-			type: 'string',
-			required: true,
-			defaultsTo:"Espinosa"
-		},
-		sex : {
-			type: "string",
-			enum:["male","woman","notsosimple"]
 		}
 	}
 };
 
 
-//Player.create({name:"Esen",lastname:"Espinosa",sex:"male"})
+//Game.create({hash:"391jg9183jg91jg131g3gj1g-13g"}).exec(console.log)
